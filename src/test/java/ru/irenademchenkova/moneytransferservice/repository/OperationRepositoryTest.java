@@ -5,21 +5,20 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.irenademchenkova.moneytransferservice.models.Operation;
 
-import java.util.concurrent.atomic.AtomicLong;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.mock;
 
 public class OperationRepositoryTest {
     private OperationRepository operationRepository;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         operationRepository = new OperationRepository();
     }
 
     @Test
-    void addOperationToListTest(){
+    void addOperationToListTest() {
         final Operation operation = mock(Operation.class);
         final Integer operationId = operationRepository.getOperationId().intValue();
         int expectedListSize = 1;
@@ -28,14 +27,13 @@ public class OperationRepositoryTest {
         int actualListSize = operationRepository.getOperationList().size();
         Operation operationActual = operationRepository.getOperationList().get(operationId);
 
-
-        assertEquals(expectedListSize,actualListSize);
+        assertEquals(expectedListSize, actualListSize);
         assertNotNull(operationActual);
         assertEquals(operation, operationActual);
     }
 
     @AfterEach
-    void tearDown(){
+    void tearDown() {
         operationRepository = null;
     }
 }

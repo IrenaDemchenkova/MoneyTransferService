@@ -21,10 +21,7 @@ public class MoneyTransferServiceTest {
     @Test
     void proceedOperationTest() {
         final Operation operation = mock(Operation.class);
-
         moneyTransferService.proceedOperation(operation);
-
         verify(operationRepository).addOperationToList(operation);
     }
-
 }

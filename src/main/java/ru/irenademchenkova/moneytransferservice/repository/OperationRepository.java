@@ -1,6 +1,7 @@
 package ru.irenademchenkova.moneytransferservice.repository;
 
 import org.springframework.stereotype.Repository;
+import ru.irenademchenkova.moneytransferservice.models.ConfirmOperation;
 import ru.irenademchenkova.moneytransferservice.models.Operation;
 
 import java.util.HashMap;
@@ -26,11 +27,13 @@ public class OperationRepository {
         operationId.addAndGet(1);
     }
 
-    public void updateOperation(Operation operation) throws Exception {
-        if (operationList.get(operation.getOperationId())==null){
-            throw new Exception("Internal error");
+    public String updateOperation(ConfirmOperation operation) throws RuntimeException {
+        if (operationList.get(Integer.parseInt(operation.getOperationId())) == null) {
+            throw new RuntimeException("Unknown operation");
         }
-        operationList.put(operationId.intValue(), operation);
+
+        this.operationList.get(Integer.parseInt(operation.getOperationId())).setOperationId(operation.getOperationId());
+        return operation.getOperationId();
     }
 }
 

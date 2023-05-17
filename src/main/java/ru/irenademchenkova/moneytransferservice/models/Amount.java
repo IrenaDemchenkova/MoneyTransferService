@@ -4,13 +4,13 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
 public class Amount {
-
     @Min(1)
     private Integer value;
     @NotBlank
     private String currency;
 
-    public Amount() {}
+    public Amount() {
+    }
 
     public Amount(Integer value, String currency) {
         this.value = value;
@@ -23,14 +23,6 @@ public class Amount {
 
     public String getCurrency() {
         return currency;
-    }
-
-    public void setValue(int value) {
-        this.value = value;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
     }
 
     @Override

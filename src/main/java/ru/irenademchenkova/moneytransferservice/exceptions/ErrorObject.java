@@ -1,22 +1,21 @@
 package ru.irenademchenkova.moneytransferservice.exceptions;
 
 public class ErrorObject {
-    static Integer idCounter =1;
+    private static Integer idCounter = 1;
     public Integer id;
     public String message;
 
     public ErrorObject(Integer id, String message) {
         this.id = id;
         this.message = message;
-        idCounterSet();
+        incrementCounter();
     }
 
-    private Integer idCounterSet (){
-        idCounter=idCounter+1;
+    public static Integer getIdCounter() {
         return idCounter;
     }
 
-    public static Integer idCounterGet(){
-        return idCounter;
+    private void incrementCounter() {
+        idCounter += 1;
     }
 }
