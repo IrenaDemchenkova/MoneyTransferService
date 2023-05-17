@@ -2,19 +2,21 @@ package ru.irenademchenkova.moneytransferservice.models;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.CreditCardNumber;
 
 public class Operation {
     private String operationId;
     private String code;
-    @CreditCardNumber
+    @NotBlank
     private String cardFromNumber;
     @Pattern(regexp="^(0[1-9]|1[0-2])([\\/])([2-9][0-9])$")
     private String cardFromValidTill;
     @Digits(integer=3, fraction=0)
+    @NotBlank
     private String cardFromCVV;
-    @CreditCardNumber
+    @Digits (integer = 16, fraction = 0)
     private String cardToNumber;
     @Valid
     private Amount amount;

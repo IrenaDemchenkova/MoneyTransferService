@@ -3,14 +3,12 @@ package ru.irenademchenkova.moneytransferservice.controllers;
 
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.irenademchenkova.moneytransferservice.models.Operation;
 import ru.irenademchenkova.moneytransferservice.models.Response;
 import ru.irenademchenkova.moneytransferservice.service.MoneyTransferService;
 @Slf4j
+@CrossOrigin
 @RestController
 @RequestMapping("/confirmOperation")
 public class ConfirmOperationController {

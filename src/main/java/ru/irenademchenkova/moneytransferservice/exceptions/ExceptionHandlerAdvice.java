@@ -12,7 +12,7 @@ public class ExceptionHandlerAdvice {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<List<ErrorObject>> handleArgumentNotValidException(MethodArgumentNotValidException e) {
         var errors = e.getBindingResult().getFieldErrors().stream()
-                .map(fieldError -> new ErrorObject(0, fieldError.getDefaultMessage()))
+                .map(fieldError -> new ErrorObject(ErrorObject.idCounterGet(), fieldError.getDefaultMessage()))
                 .toList();
         return ResponseEntity.badRequest().body(errors);
     }

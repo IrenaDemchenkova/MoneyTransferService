@@ -25,5 +25,12 @@ public class OperationRepository {
         operation.setOperationId(operationId.toString());
         operationId.addAndGet(1);
     }
+
+    public void updateOperation(Operation operation) throws Exception {
+        if (operationList.get(operation.getOperationId())==null){
+            throw new Exception("Internal error");
+        }
+        operationList.put(operationId.intValue(), operation);
+    }
 }
 

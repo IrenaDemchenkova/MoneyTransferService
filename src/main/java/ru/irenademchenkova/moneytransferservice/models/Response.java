@@ -7,4 +7,7 @@ public class Response {
         this.operationId = operationId;
     }
 
+    public String getOperationId() {
+        return operationId;
+    }
 }

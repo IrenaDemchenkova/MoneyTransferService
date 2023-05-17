@@ -1,15 +1,14 @@
 package ru.irenademchenkova.moneytransferservice.repository;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.irenademchenkova.moneytransferservice.models.Operation;
 
 import java.util.concurrent.atomic.AtomicLong;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 public class OperationRepositoryTest {
     private OperationRepository operationRepository;
@@ -33,5 +32,10 @@ public class OperationRepositoryTest {
         assertEquals(expectedListSize,actualListSize);
         assertNotNull(operationActual);
         assertEquals(operation, operationActual);
+    }
+
+    @AfterEach
+    void tearDown(){
+        operationRepository = null;
     }
 }

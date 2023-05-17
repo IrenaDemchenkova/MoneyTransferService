@@ -8,6 +8,7 @@ import ru.irenademchenkova.moneytransferservice.models.Response;
 import ru.irenademchenkova.moneytransferservice.service.MoneyTransferService;
 
 @Slf4j
+@CrossOrigin
 @RestController
 @RequestMapping("/transfer")
 public class TransferController {
