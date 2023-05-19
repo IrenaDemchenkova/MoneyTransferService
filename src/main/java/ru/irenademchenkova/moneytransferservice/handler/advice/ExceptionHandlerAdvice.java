@@ -1,20 +1,18 @@
-package ru.irenademchenkova.moneytransferservice.exceptions;
+package ru.irenademchenkova.moneytransferservice.handler.advice;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import ru.irenademchenkova.moneytransferservice.models.ErrorObject;
 
-import java.util.List;
+import java.util.Objects;
 
 @RestControllerAdvice
 public class ExceptionHandlerAdvice {
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<List<ErrorObject>> handleArgumentNotValidException(MethodArgumentNotValidException e) {
-        var errors = e.getBindingResult().getFieldErrors().stream()
-                .map(fieldError -> new ErrorObject(ErrorObject.getIdCounter(), fieldError.getDefaultMessage()))
-                .toList();
-        return ResponseEntity.badRequest().body(errors);
+    public ResponseEntity<ErrorObject> handleArgumentNotValidException(MethodArgumentNotValidException e) {
+        return ResponseEntity.badRequest().body(new ErrorObject(0, Objects.requireNonNull(e.getBindingResult().getFieldError()).getDefaultMessage()));
     }
 
     @ExceptionHandler(RuntimeException.class)

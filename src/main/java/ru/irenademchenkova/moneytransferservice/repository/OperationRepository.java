@@ -1,16 +1,17 @@
 package ru.irenademchenkova.moneytransferservice.repository;
 
 import org.springframework.stereotype.Repository;
+import ru.irenademchenkova.moneytransferservice.exceptions.UnknownOperation;
 import ru.irenademchenkova.moneytransferservice.models.ConfirmOperation;
 import ru.irenademchenkova.moneytransferservice.models.Operation;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Repository
 public class OperationRepository {
-    private final Map<Integer, Operation> operationList = new HashMap<>();
+    private final ConcurrentHashMap<Integer, Operation> operationList = new ConcurrentHashMap<>();
     private final AtomicLong operationId = new AtomicLong(1L);
 
     public Map<Integer, Operation> getOperationList() {
@@ -21,19 +22,18 @@ public class OperationRepository {
         return operationId;
     }
 
-    public void addOperationToList(Operation operation) {
+    public String addOperationToList(Operation operation) {
         operationList.put(operationId.intValue(), operation);
-        operation.setOperationId(operationId.toString());
-        operationId.addAndGet(1);
+        System.out.println(operationId);
+        return String.valueOf(operationId.addAndGet(1) - 1);
     }
 
-    public String updateOperation(ConfirmOperation operation) throws RuntimeException {
-        if (operationList.get(Integer.parseInt(operation.getOperationId())) == null) {
-            throw new RuntimeException("Unknown operation");
+    public String updateOperation(ConfirmOperation operation) throws UnknownOperation {
+        if (operationList.get(Integer.parseInt(operation.operationId())) == null) {
+            throw new UnknownOperation();
         }
 
-        this.operationList.get(Integer.parseInt(operation.getOperationId())).setOperationId(operation.getOperationId());
-        return operation.getOperationId();
+        return operation.operationId();
     }
 }
 

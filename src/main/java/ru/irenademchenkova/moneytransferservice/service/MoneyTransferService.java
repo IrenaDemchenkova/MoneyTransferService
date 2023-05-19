@@ -13,11 +13,11 @@ public class MoneyTransferService {
         this.operationRepository = operationRepository;
     }
 
-    public void proceedOperation(Operation operation) {
-        this.operationRepository.addOperationToList(operation);
+    public String proceedOperation(Operation operation) {
+        return operationRepository.addOperationToList(operation);
     }
 
     public String confirmOperation(ConfirmOperation operation) {
-        return this.operationRepository.updateOperation(operation);
+        return operationRepository.updateOperation(operation);
     }
 }
