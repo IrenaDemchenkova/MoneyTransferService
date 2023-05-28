@@ -1,4 +1,4 @@
-package ru.irenademchenkova.moneytransferservice.handler.advice;
+package ru.irenademchenkova.moneytransferservice.handler;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;

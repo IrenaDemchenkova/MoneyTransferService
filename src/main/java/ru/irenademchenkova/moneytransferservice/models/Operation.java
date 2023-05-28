@@ -21,15 +21,15 @@ public record Operation(
         @Valid
         Amount amount
 ) {
-        @Override
-        public String toString() {
-                return "Operation{" +
-                        ", cardFromNumber='" + cardFromNumber + '\'' +
-                        ", cardFromValidTill='" + cardFromValidTill + '\'' +
-                        ", cardFromCVV='" + cardFromCVV + '\'' +
-                        ", cardToNumber='" + cardToNumber + '\'' +
-                        ", amount=" + amount +
-                        '}';
-        }
+    @Override
+    public String toString() {
+        return "Operation{" +
+                ", cardFromNumber='" + cardFromNumber + '\'' +
+                ", cardFromValidTill='" + cardFromValidTill + '\'' +
+                ", cardFromCVV='" + cardFromCVV + '\'' +
+                ", cardToNumber='" + cardToNumber + '\'' +
+                ", amount=" + amount +
+                '}';
+    }
 }
 

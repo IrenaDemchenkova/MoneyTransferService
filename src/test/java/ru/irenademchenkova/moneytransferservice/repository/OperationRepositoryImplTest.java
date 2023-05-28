@@ -9,23 +9,23 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mock;
 
-public class OperationRepositoryTest {
-    private OperationRepository operationRepository;
+public class OperationRepositoryImplTest {
+    private OperationRepositoryImpl operationRepositoryImpl;
 
     @BeforeEach
     void setUp() {
-        operationRepository = new OperationRepository();
+        operationRepositoryImpl = new OperationRepositoryImpl();
     }
 
     @Test
     void addOperationToListTest() {
         final Operation operation = mock(Operation.class);
-        final Integer operationId = operationRepository.getOperationId().intValue();
+        final Integer operationId = operationRepositoryImpl.getOperationId().intValue();
         int expectedListSize = 1;
 
-        operationRepository.addOperationToList(operation);
-        int actualListSize = operationRepository.getOperationList().size();
-        Operation operationActual = operationRepository.getOperationList().get(operationId);
+        operationRepositoryImpl.addOperationToList(operation);
+        int actualListSize = operationRepositoryImpl.getOperationList().size();
+        Operation operationActual = operationRepositoryImpl.getOperationList().get(operationId);
 
         assertEquals(expectedListSize, actualListSize);
         assertNotNull(operationActual);
@@ -34,6 +34,6 @@ public class OperationRepositoryTest {
 
     @AfterEach
     void tearDown() {
-        operationRepository = null;
+        operationRepositoryImpl = null;
     }
 }
